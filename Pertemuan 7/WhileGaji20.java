@@ -9,6 +9,7 @@ public class WhileGaji20 {
 
         int i = 0;
         double totalGajiLembur = 0;
+        int gajiLembur = 0;
 
         while (i < jumlahKaryawan) {
             System.out.println("pilihan jabatan - Direktur, Manajer, Karyawan");
@@ -17,8 +18,6 @@ public class WhileGaji20 {
             System.out.print("Masukkan jam lembur: ");
             int jumlahJamLembur = input.nextInt();
             i++;
-
-            int gajiLembur = 0;
 
             if (jabatan.equalsIgnoreCase("direktur")) {
                 continue;
