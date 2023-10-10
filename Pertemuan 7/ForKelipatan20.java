@@ -18,8 +18,8 @@ public class ForKelipatan20 {
             }
         }
 
-        System.out.println("Banyaknya bilangan " + kelipatan + " dari 1 sampai 50 adalah " + counter);
-        System.out.println("Total bilangan kelipatan " + kelipatan + " adalah " + total);
-        System.out.println("Rata-rata bilangan kelipatan " + kelipatan + " adalah " + rata);
+        System.out.printf("Banyaknya bilangan %d dari 1 sampai 50 adalah %d\n", kelipatan, counter); 
+        System.out.printf("total bilangan kelipatan %d dari 1 sampai 50 adalah %d\n", kelipatan, total); 
+        System.out.printf("rata-rata bilangan kelipatan %d dari 1 sampai 50 adalah %2f\n", kelipatan, rata);
     }
 }
