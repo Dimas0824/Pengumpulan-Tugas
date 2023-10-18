@@ -52,12 +52,17 @@ public class Toko20 {
         System.out.println("Total item barang yang dibeli: " + jumlahProduk); // Menampilkan jumlah produk yang dibeli
 
         if (tipeMember.equalsIgnoreCase("Y")) {
+            // Jika pengguna adalah member
             System.out.println("Tipe: Member");
+            // Menghitung diskon member, jika total harga >= 200000 maka diskon 10%, jika tidak maka diskon 5%
             double diskonMember = totalHarga >= 200000 ? 0.1 * totalHarga : 0.05 * totalHarga;
+            // Menambahkan diskon member ke total diskon
             totalDiskon += diskonMember;
         } else {
+            // Jika pengguna bukan member
             System.out.println("Tipe: Non-Member");
         }
+        
 
         double totalBayar = totalHarga - totalDiskon; // Menghitung total yang harus dibayar setelah diskon
 
