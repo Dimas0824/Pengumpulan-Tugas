@@ -47,6 +47,7 @@ public class Toko20 {
         System.out.print("Apakah Anda punya kartu member (Y/N)? ");
         tipeMember = sc.nextLine(); // Pertanyaan untuk member atau tidak
 
+        //menampilkan output 
         System.out.println("\n-------- Total Pembelian --------");
         System.out.println("Nama pelanggan: " + nama);
         System.out.println("Total item barang yang dibeli: " + jumlahProduk); // Menampilkan jumlah produk yang dibeli
@@ -66,8 +67,9 @@ public class Toko20 {
 
         double totalBayar = totalHarga - totalDiskon; // Menghitung total yang harus dibayar setelah diskon
 
-        System.out.println("SubTotal: " + totalHarga);
-        System.out.println("Total Diskon: " + totalDiskon);
-        System.out.println("Total yang Harus Dibayar: " + totalBayar);
+        //menampilkan semua output
+        System.out.println("SubTotal= " + totalHarga);
+        System.out.println("Total Diskon= " + totalDiskon);
+        System.out.println("Total yang Harus Dibayar= " + totalBayar);
     }
 }
