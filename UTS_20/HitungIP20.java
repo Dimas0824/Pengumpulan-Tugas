@@ -53,8 +53,11 @@ public class HitungIP20 {
                     nilai = 2.0;
                     break;
                 case "D":
-                case "E":
                     nilai = 1.0;
+                    jumlahPerbaikan++;
+                    break;
+                case "E":
+                    nilai = 0.0;
                     jumlahPerbaikan++;
                     break;
                 default:
