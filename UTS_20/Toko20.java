@@ -63,7 +63,6 @@ public class Toko20 {
             System.out.println("Tipe: Non-Member");
         }
         
-
         double totalBayar = totalHarga - totalDiskon; // Menghitung total yang harus dibayar setelah diskon
 
         //menampilkan semua output
