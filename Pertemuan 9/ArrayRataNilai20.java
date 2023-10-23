@@ -8,8 +8,8 @@ public class ArrayRataNilai20 {
         int jumlahMahasiswa = sc.nextInt();
 
         int[] nilaiMhs = new int[jumlahMahasiswa];
-        double total = 0;
-        double rata2;
+        double totalLulus = 0;
+        double rata2Lulus;
         int jumlahLulus = 0;
         double totalTidakLulus = 0;
 
@@ -19,16 +19,16 @@ public class ArrayRataNilai20 {
         }
 
         for (int i = 0; i < nilaiMhs.length; i++) {
-            total += nilaiMhs[i];
             if (nilaiMhs[i] > 70) {
+                totalLulus += nilaiMhs[i];
                 jumlahLulus++;
             } else {
                 totalTidakLulus += nilaiMhs[i];
             }
         }
 
-        rata2 = total / nilaiMhs.length;
-        System.out.println("Rata-rata nilai = " + rata2);
+        rata2Lulus = totalLulus / jumlahLulus;
+        System.out.println("Rata-rata nilai lulus = " + rata2Lulus);
         System.out.println("Rata-rata nilai tidak lulus = " + (totalTidakLulus / (nilaiMhs.length - jumlahLulus)));
     }
 }
