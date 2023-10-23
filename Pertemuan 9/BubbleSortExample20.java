@@ -5,7 +5,7 @@ public class BubbleSortExample20 {
 
         for (int i = 0; i < intData.length; i++) {
             for (int j = i+1; j < intData.length; j++) {
-                if (intData[i] > intData[j]) {
+                if (intData[i] < intData[j]) {
                     temp = intData[i];
                     intData[i] = intData[j];
                     intData[j] = temp;
