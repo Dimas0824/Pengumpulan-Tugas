@@ -16,7 +16,7 @@ public class LinearSearch20 {
             arrayInt[i] = sc.nextInt();
         }
         
-        System.out.println("Masukkan key: ");
+        System.out.print("Masukkan key: ");
         key = sc.nextInt();
         
         for(int i = 0; i <arrayInt.length; i++) {
