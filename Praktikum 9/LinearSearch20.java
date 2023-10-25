@@ -16,13 +16,16 @@ public class LinearSearch20 {
             arrayInt[i] = sc.nextInt();
         }
         
-        System.out.print("Masukkan key: ");
+        System.out.println("Masukkan key: ");
         key = sc.nextInt();
         
         for(int i = 0; i <arrayInt.length; i++) {
             if (arrayInt[i] == key) {
                 hasil = i;
                 break;
+            }else{
+                System.out.print("Key tidak ada dalam array");
+                System.exit(0);
             }
         }
         System.out.println("Key ada dalam array pada posisi indeks ke-" + hasil);
