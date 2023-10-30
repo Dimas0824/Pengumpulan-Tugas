@@ -18,34 +18,41 @@ public class BioskopWithScanner {
 
             switch (menu) {
                 case 1:
+                    String input;
                     do {
                         System.out.print("Masukkan nama: ");
                         String nama = sc.nextLine();
-                        System.out.print("Masukkan baris: ");
-                        int baris = sc.nextInt();
-                        System.out.print("Masukkan kolom: ");
-                        int kolom = sc.nextInt();
+                        int baris, kolom;
+                        while (true) {
+                            System.out.print("Masukkan baris: ");
+                            baris = sc.nextInt();
+                            System.out.print("Masukkan kolom: ");
+                            kolom = sc.nextInt();
 
-                        if (baris > 0 && baris <= 4 && kolom > 0 && kolom <= 2) {
-                            if (penonton[baris - 1][kolom - 1] == null) {
-                                penonton[baris - 1][kolom - 1] = nama;
+                            if (baris > 0 && baris <= 4 && kolom > 0 && kolom <= 2) {
+                                if (penonton[baris - 1][kolom - 1] == null) {
+                                    penonton[baris - 1][kolom - 1] = nama;
+                                    break;
+                                } else {
+                                    System.out.println(
+                                            "Maaf, kursi baris " + baris + ", kolom " + kolom + " sudah ditempati.");
+                                }
                             } else {
-                                System.out.println(
-                                        "Maaf, kursi baris " + baris + ", kolom " + kolom + " sudah ditempati.");
+                                System.out.println("Baris atau kolom tidak tersedia.");
                             }
-                        } else {
-                            System.out.println("Baris atau kolom tidak tersedia.");
                         }
 
                         System.out.print("Input penonton lainnya? (y/n): ");
                         sc.nextLine();
-                    } while (!sc.nextLine().equalsIgnoreCase("n"));
+                        input = sc.nextLine();
+                    } while (!input.equalsIgnoreCase("n"));
                     break;
 
                 case 2:
                     for (int i = 0; i < penonton.length; i++) {
                         for (int j = 0; j < penonton[i].length; j++) {
-                            System.out.printf("Penonton baris %d, kolom %d: %s\n", i + 1, j + 1, penonton[i][j]);
+                            String tampilan = penonton[i][j] != null ? penonton[i][j] : "***";
+                            System.out.printf("Penonton baris %d, kolom %d: %s\n", i + 1, j + 1, tampilan);
                         }
                     }
                     break;
