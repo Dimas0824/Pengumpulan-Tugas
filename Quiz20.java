@@ -14,6 +14,14 @@ public class Quiz20 {
                 System.out.print("Tebak angka (1-10): ");
                 int answer = input.nextInt();
                 input.nextLine();
+
+                if (answer < number) {
+                    System.out.println("Terlalu rendah");
+                } else if (answer > number) {
+                    System.out.println("Terlalu tinggi");
+                } else {
+                    success = true;
+                }
                 success = (answer == number);
             } while (!success);
             System.out.println("Apakah Anda ingin mengulang permaian (Y/y)?");
