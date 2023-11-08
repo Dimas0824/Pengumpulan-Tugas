@@ -1,9 +1,7 @@
 package ProjectSemester;
+
 import java.util.Scanner;
 
-/**
- * Tugas_2_Login
- */
 public class Tugas_2_Login {
 
     public static void main(String[] args) {
@@ -11,17 +9,15 @@ public class Tugas_2_Login {
         // deklarasi dan inisialisasi scanner, variable, dan array
         Scanner sc = new Scanner(System.in);
 
-        String[] username = { "haikal", "irsyad", "esa" };
-        String[] password = { "123", "456", "789" };
+        String[][] users = { { "haikal", "123" }, { "irsyad", "456" }, { "esa", "789" } };
         String inputUS, inputPW;
-        int id = 0;
-        boolean access = false;
+        int id = -1;
 
         // looping login
         do {
+            System.out.println("Silahkan Login!");
 
             // input username
-            System.out.println("Silahkan Login!");
             System.out.print("Masukkan username : ");
             inputUS = sc.nextLine();
 
@@ -30,28 +26,32 @@ public class Tugas_2_Login {
             inputPW = sc.nextLine();
 
             // looping search username dan password
-            for (int i = 0; i < username.length; i++) {
-                // jika true, maka id bernilai index dan access bernilai true
-                if (inputUS.equals(username[i]) && inputPW.equals(password[i])) {
-                    System.out.println();
-                    System.out.println("Login berhasil!");
-                    id = i;
-                    access = true;
+            for (int i = 0; i < users.length; i++) {
+                if (inputUS.equals(users[i][0])) {
+                    for (int j = 0; j < users[i].length; j++) {
+                        if (inputPW.equals(users[i][j])) {
+                            System.out.println();
+                            System.out.println("Login berhasil!");
+                            id = i;
+                            break;
+                        }
+                    }
+                }
+                if (id != -1) {
                     break;
                 }
             }
 
             // jika belum berhasil login maka akan ditampilkan kode dibawah
-            if (access != true) {
+            if (id == -1) {
                 System.out.println("Username dan Password salah!");
                 System.out.println();
             }
 
-            // jika access masuh bernilai not true, maka looping akan mengulang lagi
-        } while (access != true);
+        } while (id == -1);
 
         // output berhasil login
-        System.out.println("Selamat datang " + username[id] + "!");
+        System.out.println("Selamat datang " + users[id][0] + "!");
         sc.close();
     }
 }

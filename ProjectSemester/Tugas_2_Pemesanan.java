@@ -1,4 +1,5 @@
 package ProjectSemester;
+
 import java.util.Scanner;
 
 public class Tugas_2_Pemesanan {
@@ -8,41 +9,45 @@ public class Tugas_2_Pemesanan {
         // deklarasi dan inisialisasi scanner, variable, dan array
         Scanner sc = new Scanner(System.in);
 
-        int itemCount = 0;
-        String[] pesanan = new String[40];
-        String inputPesanan;
-        char choice;
-        boolean session = true;
-
         System.out.println("Cafe The Orange!");
 
-        // looping input pesanan
-        for (int i = 0; session == true; i++) {
-            System.out.print("Masukkan pesanan ke-" + (i + 1) + " mu : ");
-            inputPesanan = sc.nextLine();
-            pesanan[i] = inputPesanan;
-            itemCount++;
+        System.out.print("Masukkan jumlah pelanggan: ");
+        int customerCount = sc.nextInt();
+        sc.nextLine();
 
-            // konfirmasi menambahkan menu
-            System.out.print("Apakah anda ingin memesan lagi? (y/t) : ");
-            choice = sc.next().charAt(0);
-            sc.nextLine();
-            System.out.println();
+        String[][] pesanan = new String[customerCount][40];
 
-            // jika y atau Y maka akan melanjutkan looping
-            if (choice == 'y' || choice == 'Y') {
-                continue;
+        // looping input pesanan untuk setiap pelanggan
+        for (int i = 0; i < customerCount; i++) {
+            System.out.println("Pelanggan ke-" + (i + 1) + ":");
+            boolean session = true;
+            int itemCount = 0;
+
+            while (session) {
+                System.out.print("Masukkan pesanan ke-" + (itemCount + 1) + " : ");
+                String inputPesanan = sc.nextLine();
+                pesanan[i][itemCount] = inputPesanan;
+                itemCount++;
+
+                // konfirmasi menambahkan menu
+                System.out.print("Apakah anda ingin memesan lagi? (y/t) : ");
+                char choice = sc.next().charAt(0);
+                sc.nextLine();
+                System.out.println();
 
                 // jika selain y maka session menjadi false
-            } else {
-                session = false;
+                if (choice != 'y' && choice != 'Y') {
+                    session = false;
+                }
             }
         }
 
-        // looping output pesanan satu persatu
-        System.out.println("Pesanan anda : ");
-        for (int i = 0; i < itemCount; i++) {
-            System.out.println("> " + pesanan[i]);
+        // looping output pesanan satu persatu untuk setiap pelanggan
+        for (int i = 0; i < customerCount; i++) {
+            System.out.println("Pesanan pelanggan ke-" + (i + 1) + " : ");
+            for (int j = 0; j < pesanan[i].length && pesanan[i][j] != null; j++) {
+                System.out.println("> " + pesanan[i][j]);
+            }
         }
 
         sc.close();
