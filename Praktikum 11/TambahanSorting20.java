@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class TambahanSorting20 {
     public static void main(String[] args) {
         String[][] atlit = {
@@ -11,9 +9,15 @@ public class TambahanSorting20 {
 
         String[] cabor = { "Badminton", "Tenis Meja", "Basket", "Bola Voli" };
 
-        for (int i = 0; i < atlit.length; i++) {
-            Arrays.sort(atlit[i]); // mengurutkan arraynya
-        }
+        int n = cabor.length;
+        for (int i = 0; i < n - 1; i++)
+            for (int j = 0; j < n - i - 1; j++)
+                if (cabor[j].compareTo(cabor[j + 1]) > 0) {
+                    // swap cabor[j+1] and cabor[j]
+                    String temp = cabor[j];
+                    cabor[j] = cabor[j + 1];
+                    cabor[j + 1] = temp;
+                }
 
         for (int i = 0; i < atlit.length; i++) { // perulangan untuk menampilkan cabornya
             System.out.println("Cabang olahraga: " + cabor[i]);
