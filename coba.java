@@ -416,7 +416,6 @@ public class coba {
                                         System.out.println("Kembalian : " + orders[latestOrders][6]);
                                         System.out.println("Proses pembayaran berhasil!");
                                         System.out.println("Terima kasih!");
-                                        System.out.println(clearScreen);
                                         break;
 
                                     } else {
@@ -653,14 +652,21 @@ public class coba {
                             System.out.println();
                             double totalIncome = 0;
                             for (int i = 1; i < orders.length; i++) {
+
                                 if (orders[i][0] != null && orders[i][5] != null && orders[i][6] != null) {
                                     totalIncome += Double.parseDouble(orders[i][5]) - Double.parseDouble(orders[i][6]);
                                 }
-                            }
 
-                            System.out.println("Total Pendapatan: " + totalIncome);
-                            System.out.println("=========================");
-                            break;
+                                System.out.println("Total Pendapatan: " + totalIncome);
+                                System.out.println("=========================");
+                                try {
+                                    Thread.sleep(3000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                break;
+                            }
+                            continue;
 
                         default:
                             System.out.println("Invalid choice!");
