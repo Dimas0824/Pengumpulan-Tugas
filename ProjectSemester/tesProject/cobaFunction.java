@@ -1,9 +1,49 @@
+package ProjectSemester.tesProject;
 import java.util.Scanner;
 
 /**
  * main
  */
-public class coba {
+
+public class cobaFunction {
+
+    public static void displayStock(String[][] items) {
+        System.out.println();
+        System.out.println("╔══════════════════════════════════════════════╗");
+        System.out.println("║              Cafe the orange stok            ║");
+        System.out.println("╚══════════════════════════════════════════════╝");
+        System.out.println();
+        int count = 1;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i][0] != null) {
+                System.out.println("[" + (count++) + "] tambah stok " + items[i][0] + " (" + items[i][2] + ")");
+                System.out.println("[" + (count++) + "] kurangi stok " + items[i][0] + " (" + items[i][2] + ")");
+            }
+        }
+        System.out.println("[" + (count + 1) + "] untuk mencari stok menu");
+        System.out.println("[" + 20 + "] to exit");
+    }
+
+    public static void manageStock(String[][] items, Scanner sc) {
+        boolean stocking = true;
+        while (stocking) {
+            displayStock(items);
+            System.out.print("Pilihan : ");
+            int stockChoice = sc.nextInt();
+            System.out.println();
+            if (stockChoice == 20) {
+                System.out.println("Thank you!");
+                stocking = false;
+                break;
+            } else if (stockChoice % 2 != 0 && items[(stockChoice - 1) / 2][0] != null) {
+                System.out.print("Tambah stok " + items[(stockChoice - 1) / 2][0] + " : ");
+                int jumlahMasuk = sc.nextInt();
+                items[(stockChoice - 1) / 2][2] = Integer
+                        .toString(Integer.parseInt(items[(stockChoice - 1) / 2][2]) + jumlahMasuk);
+            }
+            // tambahkan logika lainnya di sini jika diperlukan
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -466,28 +506,10 @@ public class coba {
 
                 case 2:
                     stocking = true;
+                    int count = 1;
 
-                    while (stocking == true) {
-                        System.out.println();
-                        System.out.println("╔══════════════════════════════════════════════╗");
-                        System.out.println("║              Cafe the orange stok            ║");
-                        System.out.println("╚══════════════════════════════════════════════╝");
-                        int count = 1;
-                        // perulangan untuk menampilkan stok
-                        for (int i = 0; i < items.length; i++) {
-                            if (items[i][0] != null) {
-                                System.out.println(
-                                        "[" + (count++) + "] " + " tambah stok " + items[i][0] + " (" + items[i][2]
-                                                + ")");
-                                System.out.println(
-                                        "[" + (count++) + "] " + " kurangi stok " + items[i][0] + " (" + items[i][2]
-                                                + ")");
-                            }
-                        }
-
-                        System.out.println("[" + 20 + "] to exit\n");
-                        System.out.println("[" + (count + 1) + "] untuk mencari stok menu\n");
-
+                    while (stocking) {
+                        displayStock(items);
                         System.out.print("Pilihan : ");
 
                         stockChoice = sc.nextInt();
