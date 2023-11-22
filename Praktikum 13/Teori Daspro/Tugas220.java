@@ -19,7 +19,7 @@ public class Tugas220 {
         Scanner scanner = new Scanner(System.in);
 
         for (int i = 0; i < JUMLAH_MAHASISWA; i++) {
-            System.out.print("Masukkan nama Mahasiswa " + (i + 1) + ": ");
+            System.out.print("Input nama Mahasiswa " + (i + 1) + ": ");
             namaMahasiswa[i] = scanner.nextLine();
 
             System.out.println("Input nilai untuk " + namaMahasiswa[i] + ":");
