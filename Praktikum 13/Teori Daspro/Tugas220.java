@@ -1,92 +1,109 @@
 import java.util.Scanner;
 
 public class Tugas220 {
-    static final int JUMLAH_MAHASISWA = 5;
-    static final int JUMLAH_HARI = 7;
+
+    static Scanner sc27 = new Scanner(System.in);
+    static int[][] nilaiMahasiswa = new int[5][7];
+    static String[] namaMahasiswa = new String[5];
+    static int hariTertinggi = 0;
 
     public static void main(String[] args) {
-        int[][] nilaiMahasiswa = new int[JUMLAH_MAHASISWA][JUMLAH_HARI];
-        String[] namaMahasiswa = new String[JUMLAH_MAHASISWA];
+        // ** Fungsi utama **
 
         inputDataNilaiMahasiswa(namaMahasiswa, nilaiMahasiswa);
         tampilkanNilaiMahasiswa(namaMahasiswa, nilaiMahasiswa);
-        cariHariNilaiTertinggi(nilaiMahasiswa);
-        tampilkanMahasiswaNilaiTertinggi(namaMahasiswa, nilaiMahasiswa);
+        cariNilaiTertinggi();
+        mahasiswaNilaiTertinggi();
     }
 
-    // Fungsi untuk meninputkan data nilai mahasiswa
+    // ** Fungsi untuk memasukkan data nilai mahasiswa **
+
     static void inputDataNilaiMahasiswa(String[] namaMahasiswa, int[][] nilaiMahasiswa) {
         Scanner scanner = new Scanner(System.in);
 
-        for (int i = 0; i < JUMLAH_MAHASISWA; i++) {
-            System.out.print("Input nama Mahasiswa " + (i + 1) + ": ");
+        for (int i = 0; i < 5; i++) {
+            // ** Input nama Mahasiswa ke-i **
+            System.out.print("Input nama Mahasiswa ke-" + (i + 1) + ": ");
             namaMahasiswa[i] = scanner.nextLine();
 
+            // ** Input nilai untuk Mahasiswa ke-i **
             System.out.println("Input nilai untuk " + namaMahasiswa[i] + ":");
-            for (int j = 0; j < JUMLAH_HARI; j++) {
+            for (int j = 0; j < 7; j++) {
+                // ** Input nilai minggu ke-j untuk Mahasiswa ke-i **
                 System.out.print("Nilai minggu ke-" + (j + 1) + ": ");
                 nilaiMahasiswa[i][j] = scanner.nextInt();
             }
-            scanner.nextLine(); // consume the newline character
+            scanner.nextLine();
         }
     }
 
-    // Fungsi untuk menampilkan seluruh nilai mahasiswa mulai dari minggu pertama
-    // sampai ketujuh
+    // ** Fungsi untuk menampilkan seluruh nilai mahasiswa **
+
     static void tampilkanNilaiMahasiswa(String[] namaMahasiswa, int[][] nilaiMahasiswa) {
-        System.out.println("\nTabel Nilai Mahasiswa:");
-        System.out.print("Mahasiswa\t");
-        for (int j = 0; j < JUMLAH_HARI; j++) {
-            System.out.print("Minggu " + (j + 1) + "\t");
+        // ** Judul tabel **
+        System.out.println(
+                "╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.printf("║ %-15s ║", "Nama Mahasiswa");
+        for (int j = 0; j < 7; j++) {
+            System.out.printf(" %-10s ║", "Minggu " + (j + 1));
         }
         System.out.println();
 
-        for (int i = 0; i < JUMLAH_MAHASISWA; i++) {
-            System.out.print(namaMahasiswa[i] + "\t\t");
-            for (int j = 0; j < JUMLAH_HARI; j++) {
-                System.out.print(nilaiMahasiswa[i][j] + "\t\t");
+        // ** Tampilkan data nilai mahasiswa **
+        for (int i = 0; i < 5; i++) {
+            System.out.printf("║ %-15s ║", namaMahasiswa[i]);
+            for (int j = 0; j < 7; j++) {
+                // ** Ubah format specifier dari %f menjadi %d **
+                System.out.printf(" %-10d ║", nilaiMahasiswa[i][j]);
             }
             System.out.println();
         }
+        System.out.println(
+                "╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
     }
 
-    // Fungsi untuk mencari pada hari keberapakah terdapat nilai tertinggi dibanding
-    // hari lain dari keseluruhan mahasiswa
-    static void cariHariNilaiTertinggi(int[][] nilaiMahasiswa) {
-        int[] nilaiTertinggiPerHari = new int[JUMLAH_HARI];
+    // ** Fungsi untuk mencari pada minggu keberapa terdapat nilai tertinggi **
 
-        for (int j = 0; j < JUMLAH_HARI; j++) {
-            int nilaiTertinggi = nilaiMahasiswa[0][j];
-            for (int i = 1; i < JUMLAH_MAHASISWA; i++) {
-                if (nilaiMahasiswa[i][j] > nilaiTertinggi) {
-                    nilaiTertinggi = nilaiMahasiswa[i][j];
-                }
+    public static void cariNilaiTertinggi() {
+        // ** Variabel untuk menyimpan nilai tertinggi **
+        int nilaiTertinggi = nilaiMahasiswa[0][0];
+
+        // ** Perulangan untuk mencari nilai tertinggi **
+        for (int j = 1; j < 7; j++) {
+            int nilaiMinggu = 0;
+            for (int i = 0; i < 5; i++) {
+                nilaiMinggu += nilaiMahasiswa[i][j];
             }
-            nilaiTertinggiPerHari[j] = nilaiTertinggi;
-        }
 
-        System.out.println("\nNilai Tertinggi Per Hari:");
-        for (int j = 0; j < JUMLAH_HARI; j++) {
-            System.out.println("Minggu ke-" + (j + 1) + ": " + nilaiTertinggiPerHari[j]);
+            if (nilaiMinggu > nilaiTertinggi) {
+                nilaiTertinggi = nilaiMinggu;
+                hariTertinggi = j;
+            }
         }
     }
 
-    // Fungsi untuk menampilkan mahasiswa yang memiliki nilai tertinggi (tampilkan
-    // pula keterangan nilai dari minggu ke-)
-    static void tampilkanMahasiswaNilaiTertinggi(String[] namaMahasiswa, int[][] nilaiMahasiswa) {
-        for (int i = 0; i < JUMLAH_MAHASISWA; i++) {
-            int nilaiTertinggi = nilaiMahasiswa[i][0];
-            int mingguTertinggi = 1;
+    // Fungsi untuk menampilkan mahasiswa yang memiliki nilai tertinggi
+    public static void mahasiswaNilaiTertinggi() {
 
-            for (int j = 1; j < JUMLAH_HARI; j++) {
-                if (nilaiMahasiswa[i][j] > nilaiTertinggi) {
-                    nilaiTertinggi = nilaiMahasiswa[i][j];
-                    mingguTertinggi = j + 1;
-                }
+        cariNilaiTertinggi();
+        System.out.println();
+        System.out.println("nilai tugas tertinggi pada minggu ke-" + (hariTertinggi + 1) + ":");
+        double nilaiTertinggi = 0;
+        int mahasiswaTertinggi = -1;
+
+        for (int i = 0; i < 5; i++) {
+            if (nilaiMahasiswa[i][hariTertinggi] > nilaiTertinggi) {
+                nilaiTertinggi = nilaiMahasiswa[i][hariTertinggi];
+                mahasiswaTertinggi = i;
             }
+        }
 
-            System.out.println(namaMahasiswa[i] + " memiliki nilai tertinggi " +
-                    "sebesar " + nilaiTertinggi + " pada minggu ke-" + mingguTertinggi);
+        if (mahasiswaTertinggi != -1) {
+            System.out.println("Nama Mahasiswa: " + namaMahasiswa[mahasiswaTertinggi]);
+            System.out.println("Nilai pada minggu ke-" + (hariTertinggi + 1) + ": "
+                    + nilaiMahasiswa[mahasiswaTertinggi][hariTertinggi]);
+        } else {
+            System.out.println("Tidak ada mahasiswa dengan nilai tertinggi pada minggu ke-" + (hariTertinggi + 1));
         }
     }
 }
