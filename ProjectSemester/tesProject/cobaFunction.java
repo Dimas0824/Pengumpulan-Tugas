@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class cobaFunction {
 
-    public static void displayStock(String[][] items) {
+    public static void manageStock(String[][] items) {
         System.out.println();
         System.out.println("╔══════════════════════════════════════════════╗");
         System.out.println("║              Cafe the orange stok            ║");
@@ -24,10 +24,10 @@ public class cobaFunction {
         System.out.println("[" + 20 + "] to exit");
     }
 
-    public static void manageStock(String[][] items, Scanner sc) {
+    public static void AddStock(String[][] items, Scanner sc) {
         boolean stocking = true;
         while (stocking) {
-            displayStock(items);
+            manageStock(items);
             System.out.print("Pilihan : ");
             int stockChoice = sc.nextInt();
             System.out.println();
@@ -509,7 +509,7 @@ public class cobaFunction {
                     int count = 1;
 
                     while (stocking) {
-                        displayStock(items);
+                        manageStock(items);
                         System.out.print("Pilihan : ");
 
                         stockChoice = sc.nextInt();

@@ -1,4 +1,5 @@
 package ProjectSemester.tesProject;
+
 import java.util.Scanner;
 
 /**
@@ -24,7 +25,7 @@ public class coba {
 
         // array and variables for items
         int latestItems = 0;
-        int jumlahMasuk;
+        int tambahStok;
         String items[][] = new String[20][4];
         items[0][0] = "Ayam Bakar"; // nama item
         items[0][1] = "15000"; // hargaa
@@ -468,87 +469,56 @@ public class coba {
                 case 2:
                     stocking = true;
 
-                    while (stocking == true) {
+                    while (stocking) {
                         System.out.println();
                         System.out.println("╔══════════════════════════════════════════════╗");
                         System.out.println("║              Cafe the orange stok            ║");
                         System.out.println("╚══════════════════════════════════════════════╝");
+                        System.out.println("1. Tambah stok");
+                        System.out.println("2. Kurangi stok");
+                        System.out.print("Masukkan pilihan anda : ");
+                        int pilMenu = sc.nextInt();
                         int count = 1;
-                        // perulangan untuk menampilkan stok
-                        for (int i = 0; i < items.length; i++) {
-                            if (items[i][0] != null) {
-                                System.out.println(
-                                        "[" + (count++) + "] " + " tambah stok " + items[i][0] + " (" + items[i][2]
-                                                + ")");
-                                System.out.println(
-                                        "[" + (count++) + "] " + " kurangi stok " + items[i][0] + " (" + items[i][2]
-                                                + ")");
-                            }
-                        }
 
-                        System.out.println("[" + 20 + "] to exit\n");
-                        System.out.println("[" + (count + 1) + "] untuk mencari stok menu\n");
-
-                        System.out.print("Pilihan : ");
-
-                        stockChoice = sc.nextInt();
-
-                        System.out.println();
-
-                        // logika untuk menambah dan mengurangi stok
-                        if (stockChoice % 2 != 0 && items[(stockChoice - 1) / 2][0] != null) {
-                            System.out.print("Tambah stok " + items[(stockChoice - 1) / 2][0] + " : ");
-                            jumlahMasuk = sc.nextInt();
-                            items[(stockChoice - 1) / 2][2] = Integer
-                                    .toString(Integer.parseInt(items[(stockChoice - 1) / 2][2]) + jumlahMasuk);
-                        } else if (stockChoice % 2 == 0 && items[(stockChoice - 2) / 2][0] != null) {
-                            System.out.print("Kurangi stok " + items[(stockChoice - 2) / 2][0] + " : ");
-                            jumlahMasuk = sc.nextInt();
-                            items[(stockChoice - 2) / 2][2] = Integer
-                                    .toString(Integer.parseInt(items[(stockChoice - 2) / 2][2]) - jumlahMasuk);
-                        } else if (stockChoice == 20) {
-                            System.out.println("Thank you!");
-                            stocking = false;
-                            break;
-
-                            // untuk mencari menu item
-                        } else if (stockChoice == count + 1) {
-                            System.out.print("Masukkan nama menu yang akan dicari: ");
-                            String menuItem = sc.next();
-                            boolean found = false;
-                            // perulangan menampilkan menu yang dicari
-                            for (int i = 0; i < items.length; i++) {
-                                if (items[i][0] != null && items[i][0].toLowerCase().contains(menuItem.toLowerCase())) {
-                                    System.out.println("Stok " + items[i][0] + " adalah " + items[i][2]);
-                                    System.out.println("[" + (count++) + "] " + " tambah stok " + items[i][0] + " ("
-                                            + items[i][2] + ")");
-                                    System.out.println("[" + (count++) + "] " + " kurangi stok " + items[i][0] + " ("
-                                            + items[i][2] + ")");
-                                    found = true;
-                                    System.out.print("Pilihan : ");
-                                    stockChoice = sc.nextInt();
-                                    // logika untuk menambah dan mengurangi stok yang telah dicari
-                                    if (stockChoice == count - 2) {
-                                        System.out.print("Tambah stok " + items[i][0] + " : ");
-                                        jumlahMasuk = sc.nextInt();
-                                        items[i][2] = Integer
-                                                .toString(Integer.parseInt(items[i][2]) + jumlahMasuk);
-                                    } else if (stockChoice == count - 1) {
-                                        System.out.print("Kurangi stok " + items[i][0] + " : ");
-                                        jumlahMasuk = sc.nextInt();
-                                        items[i][2] = Integer
-                                                .toString(Integer.parseInt(items[i][2]) - jumlahMasuk);
+                        switch (pilMenu) {
+                            case 1:
+                                System.out.println("You have chosen to add stock.");
+                                for (int i = 0; i < items.length; i++) {
+                                    if (items[i][0] != null) {
+                                        System.out.println("[" + (count++) + "] " + " tambah stok " + items[i][0] + " ("
+                                                + items[i][2] + ")");
                                     }
                                 }
-                            }
-                            if (!found) {
-                                System.out.println("Menu yang Anda cari " + menuItem + " tidak ada.");
-                            }
-                            continue;
+                                System.out.println("Masukkan pilihan Anda: ");
+                                int pilTambah = sc.nextInt();
+                                System.out.print("Tambah stok " + items[(pilTambah - 1)][0] + " : ");
+                                int tambahStok = sc.nextInt();
+                                items[(pilTambah - 1)][2] = Integer
+                                        .toString(Integer.parseInt(items[(pilTambah - 1)][2]) + tambahStok);
+                                break;
+                            case 2:
+                                System.out.println("You have chosen to subtract stock.");
+                                for (int i = 0; i < items.length; i++) {
+                                    if (items[i][0] != null) {
+                                        System.out.println("[" + (count++) + "] " + " kurangi stok " + items[i][0]
+                                                + " (" + items[i][2] + ")");
+                                    }
+                                }
+                                System.out.println("Masukkan pilihan Anda: ");
+                                int pilKurangi = sc.nextInt();
+                                System.out.print("Kurangi stok " + items[(pilKurangi - 1)][0] + " : ");
+                                tambahStok = sc.nextInt(); // Reassigning a new value to tambahStok
+                                items[(pilKurangi - 1)][2] = Integer
+                                        .toString(Integer.parseInt(items[(pilKurangi - 1)][2]) - tambahStok);
+                                break;
+                            default:
+                                System.out
+                                        .println("Invalid choice. Please enter 1 to add stock or 2 to subtract stock.");
+                                break;
                         }
-                        break;
+
+                        continue;
                     }
-                    continue;
 
                 case 3:
                     // ! history feature
