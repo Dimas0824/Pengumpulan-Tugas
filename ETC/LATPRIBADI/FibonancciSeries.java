@@ -5,28 +5,24 @@ import java.util.Scanner;
 public class FibonancciSeries {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the number of terms in the Fibonacci series: ");
+        System.out.print("Masukkan jumlah angka dalam deret Fibonacci: ");
         int N = scanner.nextInt();
 
         if (N <= 0) {
-            System.out.println("Please enter a positive integer.");
+            System.out.println("Mohon masukkan bilangan bulat positif.");
         } else {
-            printFibonacciSeries(N);
+            System.out.print("Deret Fibonacci: ");
+            for (int i = 1; i <= N; i++) {
+                System.out.print(cetakDeretFibonacci(i) + ", ");
+            }
         }
     }
 
-    public static void printFibonacciSeries(int N) {
-        int first = 1, second = 1, hitung = 2;
-
-        // Print the first two terms of the series
-        System.out.print("Fibonacci Series: 1, 1");
-
-        while (hitung < N) {
-            int next = first + second;
-            System.out.print(", " + next);
-            first = second;
-            second = next;
-            hitung++;
+    public static int cetakDeretFibonacci(int n) {
+        if (n <= 1) {
+            return n;
+        } else {
+            return cetakDeretFibonacci(n - 1) + cetakDeretFibonacci(n - 2);
         }
     }
 }

@@ -17,10 +17,10 @@ public class InvestEmas {
     public static double hitungInvestasi(double modalAwal, int tahun) {
         double sukuBunga = 0.117; // 11.7%
 
-        for (int i = 0; i < tahun; i++) {
-            modalAwal *= (1 + sukuBunga);
+        if (tahun == 0) {
+            return modalAwal;
+        } else {
+            return hitungInvestasi(modalAwal * (1 + sukuBunga), tahun - 1);
         }
-
-        return modalAwal;
     }
 }
